@@ -363,4 +363,145 @@ Btn.propTypes = {
 };
 ```
 
+## day 4 - 24.05.01 - 강의
+
+> useEffect
+
+- State가 변경될때 마다 컨포넌트 안에 있는 모든 코드들이 실행되는데  
+  코드를 특정 조건에 실행하거나 딱 한번만 실행하게 할 때 사용됨
+- uesEffect 안에 있는 코드들은 초기 렌더링이 됐을때 한번은 실행함
+
+```js
+// deps [] 가 비어있을때
+useEffect(() => {
+  console.log('2 나는 한번만 실행돼');
+}, []);
+
+// deps [] 에 값이 변하면
+useEffect(() => {
+  console.log('3 나는 keyword가 바뀌면 실행돼');
+}, [keyword]);
+
+useEffect(() => {
+  console.log('4 나는 value가 바뀌면 실행돼');
+}, [value]);
+
+// deps [] 에 여러개가 있을때 하나라도 바뀌면
+useEffect(() => {
+  console.log('5 나는 keyword, value가 둘중 하나 라도 바뀌면 실행돼');
+}, [keyword, value]);
+
+// 응용
+useEffect(() => {
+  if (keyword !== '' && keyword.length > 5) console.log('6 나는 keyword가 5글자 이상으로 바뀌면 실행돼');
+}, [keyword]);
+```
+
+⚡정리⚡  
+react.js는 stat를 변화시킬 때 component가 재 실행된다. UI관점에서는 새로운 데이터가 들어올 때마다 자동으로 새로고침이 되어 좋은점이긴 하지만 가끔 어떤 특정 코드는 계속해서 실행되지 말아야 하는 것들이 있다. 그래서 useEffect를 사용하는것.
+
+> 잘 쓰지는 않지만... Cleanup (useEffect) \_ 함수임 ㅇㅇ
+
+```js
+// 쓰이는 예시 코드
+
+function Hello() {
+  useEffect(() => {
+    console.log('hi');
+    return () => console.log('bye');
+  }, []);
+
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowig] = useState(false);
+  const onClick = () => setShowig((prev) => !prev);
+
+  return (
+    <div>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? 'Hide' : 'show'}</button>
+    </div>
+  );
+}
+```
+
+- 컴포넌트가 없어질떄 (destroy) 무언갈 하고 싶을때 사용하는 방법 함수
+
+## day 5 - 24.05.03 - 강의
+
+> ...[ *배열* ]
+
+- 기존의 배열을 풀어서 새로운 값을 넣고 배열로 만듦
+- setToDos에서 currentArry는 현제 state 값임
+- 따라서 기존의 state 값(toDos)에 새로운 값(todo)을 넣는것
+
+```js
+// 참고 코드
+setToDos((currentArry) => [todo, ...currentArry]);
+```
+
+> map( _function_ )
+
+- ()안에 함수를 배열의 값들을 하나씩 넣어서 실행함
+- toDos의 item들을 각각 받아 html li태그에 값을 넣고 띄움
+
+```js
+<ul>
+  {toDos.map((item, index) => (
+    <li key={index}> {item}</li>
+  ))}
+</ul>
+```
+
+⭐ 리엑트에서 같은 컴포넌트의 list를 렌더할때 "key" 라는 prop을 넣어줘야 함
+
+> useState 연습 \_ 간단한 ToDoList 만들기
+
+<details>
+
+ <summary> 열기 </summary>
+
+```js
+import React, { useEffect, useState } from 'react';
+
+function App() {
+  const [todo, setTodo] = useState('');
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => {
+    setTodo(event.target.value);
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (todo === '') return;
+    setToDos((currentArry) => [todo, ...currentArry]);
+    setTodo('');
+  };
+
+  console.log(toDos);
+  return (
+    <div>
+      <h1>My todo {toDos.length}</h1>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} value={todo} type="text" placeholder="Write your to do.."></input>
+        <button>Add To Do</button>
+      </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}> {item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+```
+
+</details>
+
+> fetch() \_ api 요청
+
 # 3. 프로젝트를 마치며...
