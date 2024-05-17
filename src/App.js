@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import Detail from './routes/Detail';
+import Home from './routes/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      <h1>The Coin!</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<Detail />} />
+      </Routes>
+    </Router>
   );
 }
 

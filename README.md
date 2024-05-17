@@ -502,6 +502,88 @@ export default App;
 
 </details>
 
-> fetch() \_ api 요청
+## day 6 - 24.05.16 - 강의(다시 학습)
+
+> 브랜치 삭제 (큰일났다..)
+
+master에 여태 까지 했었던 공부 기록(readme)과 코드들을 합쳐줘야하는데 까먹고 브랜치를 삭제했다... 안그래도 사정이 있어서 다시 복습하려고 했는데 복습할 공책이 읍다..(readme) 다시... 재수강 해야겠다 .... 다시는 이런일 없기를
+
+물론 브랜치 복구까지 시도를 했지만 공부만 하고 코딩만 하고 깃허브 데스크탑에서 커밋을 하지 않았다..... 다시는 이런일 없기를...ㅎ.....
+
+> `fetch()` \_ api 요청
+
+- api요청은 한번만 하면 되기 때문에 useEffect를 사용한다.
+- state의 초기값을 꼭 넣어주기(`  const [coins, setCoins] = useState([]);` )
+
+```js
+function App() {
+  const [loding, setLoding] = useState(true);
+  const [coins, setCoins] = useState([]);
+
+  // 비트코인 api(정보)를 요청하고 사용
+  useEffect(() => {
+    fetch('https://api.coinpaprika.com/v1/tickers').then((response) =>
+      response.json().then((json) => {
+        setCoins(json);
+        setLoding(false);
+      })
+    );
+  }, []);
+
+  return (
+    <div>
+      <h1>The Coin! {loding ? null : `${coins.length} coins`}</h1>
+      {loding ? (
+        <strong>Now Loding...</strong>
+      ) : (
+        <select>
+          {coins.map((coin) => (
+            <option>
+              {coin.name} ({coin.symbol}): ${coin.quotes.USD.price} USD
+            </option>
+          ))}
+        </select>
+      )}
+    </div>
+  );
+}
+```
+
+> `react-router-dom`
+
+<p> 페이지 이동을 할 때 사용한다. </p>
+<p> a 태그를 사용하면 되지 않나 싶지만 그렇게 되면 전체가 새로고침 되기 때문에 여러가지 문제가 생길 수 있다. (화면 끊김, 로딩 속도 저하 ...) </p>
+<p> 단일 페이지 어플리케이션 즉 <strong>SPA (Single Page Application)</strong>는 다수의 페이지를 하나의 페이지에서 특정 부분만 업데이트하는 방법 </p>
+
+```js
+// 먼저 import 해주기
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// <a> 태그와 같은 역할
+import { Link } from 'react-router-dom';
+```
+
+```js
+// 사용 예시
+<Router>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/movie/:id" element={<Detail />} />
+  </Routes>
+</Router>
+```
+
+⭐중요⭐
+
+- 예전에는 `<Swich>`를 사용했지만 이제는 `<Routes>`를 사용
+- `<Routes>` 속성 element 안에 컴포넌트를 넣음
+- `<Routes>` path 속성에 해당 컴포넌트로 갈 URL를 넣어줌
+- `path="/movie/:id"` = 동적 URL \_ `:`
+  - URL에 변수 값을 넣어주는 것 (사용 할 수 있음 : `useParams`)
+
+```js
+// 중괄호로 묶어주면 그 값(:id)을 가져옴
+const { id } = useParams();
+```
 
 # 3. 프로젝트를 마치며...
