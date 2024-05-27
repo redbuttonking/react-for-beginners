@@ -586,4 +586,6 @@ import { Link } from 'react-router-dom';
 const { id } = useParams();
 ```
 
+## day 7 - 24.05.27 - 영화 정보 사이트 만들기 1
+
 # 3. 프로젝트를 마치며...

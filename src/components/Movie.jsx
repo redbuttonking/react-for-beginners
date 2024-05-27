@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import style from '../styles/Movie.module.css';
 
 function Movie({ id, coverImg, title, genres, summary }) {
   return (
-    <div>
+    <div className={style.bgc}>
       <img src={coverImg} alt="movie_cover_img" />
       <h2>
         <Link to={`/movie/${id}`}>{title}</Link>
@@ -14,7 +15,7 @@ function Movie({ id, coverImg, title, genres, summary }) {
           <li>{genres}</li>
         ))}
       </ul>
-      <p>{summary}</p>
+      {/* <p>{summary}</p> */}
     </div>
   );
 }
