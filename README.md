@@ -588,4 +588,36 @@ const { id } = useParams();
 
 ## day 7 - 24.05.27 - 영화 정보 사이트 만들기 1
 
+> 복습 및 css modul 학습
+
+- src 폴더에 **styles** 라는 폴더를 만들어 준다.
+- 만들고 싶은 css를 폴더에 만들어주는데 module화 하여 만들어준다  
+  ⭐특징⭐  
+  파일 이름에 .module 을 붙여준다. **ex)** _Movie.module.css_
+
+- 해당 jsx파일에 import를 해준다.  
+  `import style from '../styles/Movie.module.css';`
+
+- 이후 jsx 파일에서 태그 안에 className 속성으로 style를 넣어 준다.
+
+```js
+import style from '../styles/Movie.module.css';
+
+<div className="{style.bgc}"></div>;
+```
+
+## day 8 - 24.05.29 - 영화 정보 사이트 만들기 2
+
+> home 화면 디자인
+
+- 배치를 어찌 해야할지 고민중...
+- css 적용은 완료 (import, module 등)
+- flex-wrap으로 배치는 해놓은 상태
+- 상단 메뉴 component 생성
+
+> 이후 해야할 일
+
+- home 화면 디자인 (메뉴,영화)
+- 영화 detail 디자인 생각해서 초안 만들기
+
 # 3. 프로젝트를 마치며...

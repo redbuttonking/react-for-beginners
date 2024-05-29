@@ -4,17 +4,17 @@ import style from '../styles/Movie.module.css';
 
 function Movie({ id, coverImg, title, genres, summary }) {
   return (
-    <div className={style.bgc}>
+    <div className={style.movie}>
       <img src={coverImg} alt="movie_cover_img" />
       <h2>
         <Link to={`/movie/${id}`}>{title}</Link>
       </h2>
-      <h3>Genres</h3>
-      <ul>
+
+      {/* <ul>
         {genres.map((genres) => (
           <li>{genres}</li>
         ))}
-      </ul>
+      </ul> */}
       {/* <p>{summary}</p> */}
     </div>
   );
@@ -24,8 +24,8 @@ Movie.propTypes = {
   id: PropTypes.number.isRequired,
   coverImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // summary: PropTypes.string.isRequired,
+  // genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Movie;
