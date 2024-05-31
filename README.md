@@ -620,4 +620,36 @@ import style from '../styles/Movie.module.css';
 - home 화면 디자인 (메뉴,영화)
 - 영화 detail 디자인 생각해서 초안 만들기
 
+## day 9 - 24.05.30 - 영화 정보 사이트 만들기 3
+
+> Meun.jsx PropTypes 적용
+
+- text
+
+> css module 생성
+
+- Detail , Home , Movie , Menu
+
+> 긴 문자 ...으로 생략 표현 하는방법
+
+- css를 통해서 적용함
+
+```css
+.movieTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+- Home에 나오는 영화 제목(긴)을 줄이게 만듦
+
+>
+
+> 이후 해야할 일
+
+- Detail css로 정보들 배치 하기
+-
+- 영화 마다 번호 매겨주기 (1,2,3...)
+
 # 3. 프로젝트를 마치며...

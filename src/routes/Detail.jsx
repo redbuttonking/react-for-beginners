@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Movie from '../components/Movie';
+// import Movie from '../components/Movie';
+import style from '../styles/Detail.module.css';
 
 function Detail() {
   const { id } = useParams();
@@ -25,14 +26,16 @@ function Detail() {
   return (
     <div>
       {loding ? (
-        <h1>detail loding</h1>
+        <h1 className={style.loding}>detail loding</h1>
       ) : (
         <div>
-          <img alt="movie_cover_img" src={movie.large_cover_image} />
-          <h1>
-            {movie.title} _ {movie.year}
-          </h1>
-          <ul>
+          <img className={style.coverImg} alt="movie_cover_img" src={movie.large_cover_image} />
+          <div className={style.info}>
+            <h2>
+              {movie.title} _ {movie.year}
+            </h2>
+          </div>
+          <ul className={style.genres}>
             {movie.genres.map((genres) => (
               <li>{genres}</li>
             ))}

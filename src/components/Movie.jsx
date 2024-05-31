@@ -5,10 +5,10 @@ import style from '../styles/Movie.module.css';
 function Movie({ id, coverImg, title, genres, summary }) {
   return (
     <div className={style.movie}>
-      <img src={coverImg} alt="movie_cover_img" />
-      <h2>
-        <Link to={`/movie/${id}`}>{title}</Link>
-      </h2>
+      <Link to={`/movie/${id}`}>
+        <img src={coverImg} alt="movie_cover_img" />
+      </Link>
+      <h2 className={style.movieTitle}>{title}</h2>
 
       {/* <ul>
         {genres.map((genres) => (
