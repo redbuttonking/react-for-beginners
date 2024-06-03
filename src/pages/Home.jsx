@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Movie from '../components/Movie';
 import style from '../styles/Home.module.css';
-import Menu from '../components/Menu';
 
 function Home() {
   const [loding, setLoding] = useState(true);
@@ -23,23 +22,9 @@ function Home() {
         <h1>Loding...</h1>
       ) : (
         <div>
-          <div className={style.menuBar}>
-            <Menu text="Home" />
-            <Menu text="Movies" />
-            <Menu text="search" />
-          </div>
-
           <div className={style.movies}>
-            {console.log(movies[0])}
             {movies.map((movie) => (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                coverImg={movie.medium_cover_image}
-                title={movie.title}
-                // genres={movie.genres}
-                // summary={movie.summary}
-              />
+              <Movie key={movie.id} id={movie.id} coverImg={movie.medium_cover_image} title={movie.title} />
             ))}
           </div>
         </div>

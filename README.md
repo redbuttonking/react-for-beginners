@@ -649,7 +649,29 @@ import style from '../styles/Movie.module.css';
 > 이후 해야할 일
 
 - Detail css로 정보들 배치 하기
--
 - 영화 마다 번호 매겨주기 (1,2,3...)
+
+## day 10 - 24.06.03 - 영화 정보 사이트 만들기 4
+
+> 코드 구조를 변경 했음
+
+```css
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── Footer.jsx
+|   └── Movie.jsx
+├── pages/
+│   ├── Home.jsx
+│   └── Detail.jsx
+├── styles/
+│   ├── ...(생략)
+└── App.jsx
+
+```
+
+> 상단 바 (Header) 디자인 조정 (css)
+
+- 링크 방문 후 색상 변경 none
 
 # 3. 프로젝트를 마치며...

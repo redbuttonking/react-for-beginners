@@ -9,13 +9,6 @@ function Movie({ id, coverImg, title, genres, summary }) {
         <img src={coverImg} alt="movie_cover_img" />
       </Link>
       <h2 className={style.movieTitle}>{title}</h2>
-
-      {/* <ul>
-        {genres.map((genres) => (
-          <li>{genres}</li>
-        ))}
-      </ul> */}
-      {/* <p>{summary}</p> */}
     </div>
   );
 }
