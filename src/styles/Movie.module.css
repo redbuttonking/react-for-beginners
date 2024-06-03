@@ -9,6 +9,11 @@
   /* background-color: tomato; */
 }
 
+.movie img {
+  width: 200px;
+  height: 300px;
+}
+
 .movieTitle {
   margin: 0;
   text-align: center;

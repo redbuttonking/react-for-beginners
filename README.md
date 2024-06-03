@@ -674,4 +674,78 @@ src/
 
 - 링크 방문 후 색상 변경 none
 
+> Link >> NavLink로 변경
+
+- NavLink는 지금 활성화된 링크에 CSS 스타일을 적용할 수 있도록 해줌
+- className에 삼항연산자를 적용해서 활성화 된 링크면 `style.activeLink` 아니라면 `style.navLink`를 적용해준다.
+
+```js
+<NavLink to={'/react-for-beginners'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
+  Home
+</NavLink>
+```
+
+> 영화 데이터를 바꿈 \_ 넷플릭스 with themoviedb
+
+- 넷플릭스 영화 데이터 API를 사용하고 싶어서 코드를 바꿈
+- themoviedb의 가이드 데로 API를 요청하고 쿼리문에 따라서 원하는 데이터를 가져옴
+
+```js
+// Home.jsx
+const getMovies = async () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmI5YjM0MjNlYTlhNTk0ZjhkNWNhOWVjMTQxM2FkOSIsInN1YiI6IjY2NWQ5ZGQ0MTZkMmZhNjk2ZWRkODBlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.72BwyMmykV_qZqil2csMYEAPjT3pCjoPyOg1wiW4Kv4',
+    },
+  };
+
+  const json = await (
+    await fetch(
+      'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc',
+      options
+    )
+  ).json();
+  setMovies(json.results);
+  setLoding(false);
+};
+```
+
+- 마찬가지로 Detail.jsx 도 바꾸어줌
+
+```js
+//Detail.jsx
+const getMovies = async () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmI5YjM0MjNlYTlhNTk0ZjhkNWNhOWVjMTQxM2FkOSIsInN1YiI6IjY2NWQ5ZGQ0MTZkMmZhNjk2ZWRkODBlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.72BwyMmykV_qZqil2csMYEAPjT3pCjoPyOg1wiW4Kv4',
+    },
+  };
+  const json = await (
+    await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&api_key=a6b9b3423ea9a594f8d5ca9ec1413ad9`,
+      options
+    )
+  ).json();
+  console.log(json);
+  setMovie(json);
+  setLoding(false);
+};
+```
+
+⭐중간 뜬금 느낀점⭐  
+ API를 다룰줄은 알았지만 역시나 찾아보고 하는데에 있어서 눈알이 빠질뻔했다
+역시 어려워...  
+그래도 해내서 기분 좋음 ㅎㅅㅎ
+
+> 이후 해야할 일
+
+- detail.jsx 디자인 및 home.jsx 디자인
+- header 메뉴 뭐 넣을지 고민하기
+
 # 3. 프로젝트를 마치며...

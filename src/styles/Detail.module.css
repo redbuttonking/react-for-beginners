@@ -1,8 +1,10 @@
 .coverImg {
+  width: 300px;
+  height: 500px;
 }
 
 .genres li {
-  font-size: 30px;
+  font-size: 23px;
 }
 
 .loding {

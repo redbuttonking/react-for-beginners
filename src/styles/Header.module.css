@@ -1,16 +1,15 @@
-.title a {
+.navItem {
   font-size: 20px;
   margin-right: 10px;
+}
+
+.navLink {
   text-decoration-line: none;
+  color: black;
 }
 
-.title a :visited {
+.activeLink {
+  text-decoration-line: none;
   color: black;
-  text-decoration: none;
-}
-
-/* 이거 왜 안되지? */
-.title a :link {
-  color: black;
-  text-decoration: none;
+  border: 2px solid red;
 }
