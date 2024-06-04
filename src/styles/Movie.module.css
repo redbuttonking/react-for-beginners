@@ -15,7 +15,7 @@
 }
 
 .movieTitle {
-  margin: 0;
+  margin: 0px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;

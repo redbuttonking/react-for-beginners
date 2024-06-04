@@ -18,8 +18,8 @@ function Header() {
         </NavLink>
       </span>
       <span className={style.navItem}>
-        <NavLink to={'/456'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
-          Popular
+        <NavLink to={'/search'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
+          검색
         </NavLink>
       </span>
     </header>

@@ -25,7 +25,7 @@ function Detail() {
         options
       )
     ).json();
-    console.log(json);
+    // console.log(json);
     setMovie(json);
     setLoding(false);
   };
@@ -33,9 +33,9 @@ function Detail() {
     getMovies();
   }, []);
 
-  useEffect(() => {
-    console.log(movie);
-  }, [movie]);
+  // useEffect(() => {
+  //   console.log(movie);
+  // }, [movie]);
 
   return (
     <div>

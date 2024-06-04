@@ -748,4 +748,18 @@ const getMovies = async () => {
 - detail.jsx 디자인 및 home.jsx 디자인
 - header 메뉴 뭐 넣을지 고민하기
 
+## day 11 - 24.06.04 - 영화 정보 사이트 만들기 5
+
+> Search.jsx / SearchInfo.jsx 생성
+
+- 영화 검색 기능을 넣음
+- Search.jsx는 page 이고 SearchInfo.jsx는 검색기능이 있는 component
+- 검색한 영화를 클릭하면 영화정보(Detail.jsx)로 감\_Link(react-router-dom)
+
+> 이후 해야할 일
+
+- detail.jsx 디자인 및 home.jsx 디자인
+- header 메뉴 뭐 넣을지 고민하기
+- SearchInfo.jsx 디자인
+
 # 3. 프로젝트를 마치며...

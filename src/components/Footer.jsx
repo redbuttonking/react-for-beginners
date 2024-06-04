@@ -1,5 +1,5 @@
 function Footer() {
-  return <footer>sdsdsd</footer>;
+  return <footer>발부분</footer>;
 }
 
 export default Footer;
