@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import style from '../styles/SearchInfo.module.css';
 
-function SearchInfo({ id, text }) {
+function SearchInfo({ text }) {
   const [loding, setLoding] = useState(true);
   const [response, setResponse] = useState([]);
 
@@ -34,15 +35,13 @@ function SearchInfo({ id, text }) {
   }, [text]);
 
   return (
-    <div>
+    <div className={style.bgcDiv}>
       {loding ? null : (
-        <div>
+        <div className={style.bgc}>
           {response.length > 0 ? (
             response.map((movie) => (
-              <div key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.title}/{movie.id}
-                </Link>
+              <div className={style.movieText} key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
               </div>
             ))
           ) : (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import SearchInfo from '../components/SearchInfo';
+import style from '../styles/Search.module.css';
 
 function Search() {
   const [title, setTitle] = useState('');
@@ -19,10 +20,11 @@ function Search() {
 
   return (
     <div>
-      <h1>검색창임</h1>
       <form onSubmit={onSubmit}>
         <input type="text" value={title} onChange={onChange} placeholder="movieTitle"></input>
-        <button type="submit"> 검색하기 </button>
+        <button type="submit" className={style.subBtn}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
       </form>
       <SearchInfo text={submittedTitle} />
     </div>
