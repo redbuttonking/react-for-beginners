@@ -1,8 +1,28 @@
-.movies {
+.subtitle {
+  padding-left: 30px;
+  margin-bottom: 2px;
+}
+
+/* .movies {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  /* border: 1px solid black; */
+  width: 90%;
+  border: 1px solid black;
+} */
+
+.movies {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding-left: 5%;
+  width: 90%;
+}
+
+.movies::-webkit-scrollbar {
+  display: none;
 }
 
 .menuBar {

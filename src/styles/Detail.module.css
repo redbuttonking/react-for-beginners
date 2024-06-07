@@ -1,15 +1,48 @@
-.coverImg {
-  width: 300px;
-  height: 500px;
-}
-
-.genres li {
-  font-size: 23px;
-}
-
 .loding {
   /* display: none; */
 }
 
+.container {
+  position: relative;
+}
+
+.backdropImg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* opacity: 0.4; */
+}
+.content {
+  top: 10%;
+  left: 5%;
+  position: absolute;
+  display: flex;
+}
+
+.coverImg {
+  max-width: 30%;
+  height: auto;
+}
+
 .info {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+.title {
+}
+.genres span {
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  padding-right: 10px;
+}
+
+.bdImgOverlay {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
 }

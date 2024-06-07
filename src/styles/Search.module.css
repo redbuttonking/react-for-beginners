@@ -1,9 +1,9 @@
 .subBtn {
   border: none;
-  background-color: white;
-  margin-top: 12px;
+  background-color: black;
+  color: white;
   margin-left: 10px;
-  font-size: 18px;
+  font-size: 30px;
 }
 
 form {
@@ -16,9 +16,10 @@ form {
 input {
   border: none;
   border-bottom: 2px solid black;
-  width: 80%;
+  width: 40%;
+  height: 50px;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 input:focus {

@@ -21,7 +21,7 @@ function Search() {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input type="text" value={title} onChange={onChange} placeholder="movieTitle"></input>
+        <input type="text" value={title} onChange={onChange} placeholder="검색어를 입력해주세요."></input>
         <button type="submit" className={style.subBtn}>
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>

@@ -25,33 +25,40 @@ function Detail() {
         options
       )
     ).json();
-    // console.log(json);
     setMovie(json);
     setLoding(false);
   };
+
   useEffect(() => {
     getMovies();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(movie);
-  // }, [movie]);
+  useEffect(() => {
+    console.log(movie);
+  }, [movie]);
 
   return (
     <div>
       {loding ? (
         <h1 className={style.loding}>detail loding</h1>
       ) : (
-        <div>
-          <img className={style.coverImg} alt="movie_cover_img" src={IMG_URL + movie.poster_path} />
-          <div className={style.info}>
-            <h2>{movie.title}</h2>
+        <div className={style.container}>
+          <img className={style.backdropImg} alt="movie_cover_img" src={IMG_URL + movie.backdrop_path} />
+
+          <div className={style.bdImgOverlay}>
+            <div className={style.content}>
+              <img className={style.coverImg} alt="movie_cover_img" src={IMG_URL + movie.poster_path} />
+
+              <div className={style.info}>
+                <h3 className={style.title}>{movie.title}</h3>
+                <div className={style.genres}>
+                  {movie.genres.map((genre) => (
+                    <span>{genre.name}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <ul className={style.genres}>
-            {movie.genres.map((genre) => (
-              <li>{genre.name}</li>
-            ))}
-          </ul>
         </div>
       )}
 

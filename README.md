@@ -762,4 +762,47 @@ const getMovies = async () => {
 - header 메뉴 뭐 넣을지 고민하기
 - SearchInfo.jsx 디자인
 
+## day 12 - 24.06.05 - 영화 정보 사이트 만들기 6
+
+> Movie.jsx 디자인 추가
+
+- 영화 포스터를 나열하고 같은 위치에 영화 이름과 평점을 띄움
+- 다음과 같은 구조로 만듦
+
+```js
+<div className={style.overlay}>
+  <img src={IMG_URL + coverImg} alt="movie_cover_img" />
+  <div className={style.info}>
+    <h3>{title}</h3>
+    <p>Rating:</p>
+  </div>
+</div>
+```
+
+## day 13 - 24.06.07 - 영화 정보 사이트 만들기 7
+
+> 기본 배경 및 메뉴 스타일 적용
+
+- 검은 배경 적용 (`glober.css`)
+- 메뉴 bar 배치 수정(검색 아이콘 오른쪽 정렬)
+
+> 영화 리스트 가로 스크롤 적용
+
+```css
+.movies {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding-left: 5%;
+  width: 90%;
+}
+```
+
+> Detail.jsx 디자인 적용
+
+- 해당 영화에 들어가면 뒷배경이 `backdrop_path`인 데이터임 \_ 흐린 배경
+- 정보들과 배경들이 각각 position 맞춰 정렬되어 있음
+
 # 3. 프로젝트를 마치며...
