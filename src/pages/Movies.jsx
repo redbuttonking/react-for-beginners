@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Movie from '../components/Movie';
-import style from '../styles/Home.module.css';
+import MediaItem from '../components/MediaItem';
+import style from '../styles/Movies.module.css';
 
-function Home() {
+function Movies() {
   const [loding, setLoding] = useState(true);
 
   const [movies, setMovies] = useState([]);
@@ -67,7 +67,7 @@ function Home() {
           <h1 className={style.subtitle}>인기 콘텐츠</h1>
           <div className={style.movies}>
             {movies.map((movie) => (
-              <Movie
+              <MediaItem
                 key={movie.id}
                 id={movie.id}
                 coverImg={movie.poster_path}
@@ -79,7 +79,7 @@ function Home() {
           <h1 className={style.subtitle}>개봉 예정작</h1>
           <div className={style.movies}>
             {upcoming.map((upcoming) => (
-              <Movie
+              <MediaItem
                 key={upcoming.id}
                 id={upcoming.id}
                 coverImg={upcoming.poster_path}
@@ -93,4 +93,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default Movies;

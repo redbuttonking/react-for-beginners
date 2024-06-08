@@ -15,7 +15,7 @@ function Header() {
           </NavLink>
         </span>
         <span className={style.navItem}>
-          <NavLink to={'/123'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
+          <NavLink to={'/TVseries'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
             TV
           </NavLink>
         </span>

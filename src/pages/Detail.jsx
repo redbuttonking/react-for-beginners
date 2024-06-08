@@ -3,12 +3,15 @@ import { useParams } from 'react-router-dom';
 import style from '../styles/Detail.module.css';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
+const VIDEO_URL = 'https://www.youtube.com/embed/';
 
 function Detail() {
   const { id } = useParams();
 
-  const [loding, setLoding] = useState(true);
+  const [movieLoding, setMovieLoding] = useState(true);
+  const [videoLoding, setVideoLoding] = useState(true);
   const [movie, setMovie] = useState([]);
+  const [video, setVideo] = useState([]);
 
   const getMovies = async () => {
     const options = {
@@ -26,20 +29,37 @@ function Detail() {
       )
     ).json();
     setMovie(json);
-    setLoding(false);
+    setMovieLoding(false);
+  };
+
+  const getVideo = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmI5YjM0MjNlYTlhNTk0ZjhkNWNhOWVjMTQxM2FkOSIsInN1YiI6IjY2NWQ5ZGQ0MTZkMmZhNjk2ZWRkODBlYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.72BwyMmykV_qZqil2csMYEAPjT3pCjoPyOg1wiW4Kv4',
+      },
+    };
+
+    const json = await (await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`, options)).json();
+    setVideo(json.results);
+    setVideoLoding(false);
   };
 
   useEffect(() => {
     getMovies();
+    getVideo();
   }, []);
 
   useEffect(() => {
     console.log(movie);
-  }, [movie]);
+    console.log(video);
+  }, [movie, video]);
 
   return (
     <div>
-      {loding ? (
+      {movieLoding || videoLoding ? (
         <h1 className={style.loding}>detail loding</h1>
       ) : (
         <div className={style.container}>
@@ -50,30 +70,31 @@ function Detail() {
               <img className={style.coverImg} alt="movie_cover_img" src={IMG_URL + movie.poster_path} />
 
               <div className={style.info}>
-                <h3 className={style.title}>{movie.title}</h3>
+                <h3 className={style.title}>
+                  {movie.title} <span>⭐ {movie.vote_average}</span>
+                </h3>
                 <div className={style.genres}>
                   {movie.genres.map((genre) => (
                     <span>{genre.name}</span>
                   ))}
+                </div>
+                <div className={style.overview}>{movie.overview}</div>
+                <div className={style.video}>
+                  {video.length === 0 ? null : (
+                    <iframe
+                      className={style.video}
+                      src={VIDEO_URL + video[0].key}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allowfullscreen
+                    ></iframe>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* <div>
-        {movie.map((movie) => (
-        <Movie
-          key={movie.id}
-          id={movie.id}
-          coverImg={movie.medium_cover_image}
-          title={movie.title}
-          genres={movie.genres}
-          summary={movie.summary}
-        />
-        ))}
-      </div> */}
     </div>
   );
 }

@@ -805,4 +805,34 @@ const getMovies = async () => {
 - 해당 영화에 들어가면 뒷배경이 `backdrop_path`인 데이터임 \_ 흐린 배경
 - 정보들과 배경들이 각각 position 맞춰 정렬되어 있음
 
+## day 14 - 24.06.08 - 영화 정보 사이트 만들기 8
+
+> 파일이름 변경
+
+- 영화 component를 TV에도 사용하기 위해서 파일 이름을 변경함
+- `Home.jsx` => `Movies.jsx` / `Home.module.css` => `Movies.module.css`
+- `Movie.jsx` => `Mediaitem.jsx` / `Movie.module.css` => `MediaItem.module.css`
+
+> 유튜브 영상 삽입 및 평점 추가
+
+- Detail.jsx에 유튜브 영상을 추가하고 평점(vote_average)을 추가함
+- `<iframe>` 태그를 사용해 영상을 넣어주고 콘텐츠마다 영상이 있는 것이 아니기 때문에 없다면 null을 반환함
+- 속성에 `src={VIDEO_URL + video[0].key}`를 넣어서 해당 콘텐츠의 영상을 넣어줌
+
+```js
+<div className={style.video}>
+  {video.length === 0 ? null : (
+    <iframe
+      className={style.video}
+      src={VIDEO_URL + video[0].key}
+      title="YouTube video player"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  )}
+</div>
+```
+
+> TV 컴포넌트 생성 \_ TvSeries.jsx
+
 # 3. 프로젝트를 마치며...

@@ -13,7 +13,7 @@
 
 .movies {
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   white-space: nowrap;
