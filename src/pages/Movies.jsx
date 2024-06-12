@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import MediaItem from '../components/MediaItem';
+import Xscroll from '../components/Xscroll';
 import style from '../styles/Movies.module.css';
 
 function Movies() {
-  const [loding, setLoding] = useState(true);
+  const [popularityLod, setPopularityLod] = useState(true);
+  const [upComingLod, setUpComingLod] = useState(true);
 
   const [movies, setMovies] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
@@ -25,7 +27,7 @@ function Movies() {
       )
     ).json();
     setMovies(json.results);
-    setLoding(false);
+    setPopularityLod(false);
   };
 
   const getUpcoming = async () => {
@@ -42,7 +44,7 @@ function Movies() {
       await fetch('https://api.themoviedb.org/3/movie/upcoming?language=ko-KR&page=1', options)
     ).json();
     setUpcoming(json.results);
-    setLoding(false);
+    setUpComingLod(false);
   };
 
   useEffect(() => {
@@ -50,44 +52,51 @@ function Movies() {
     getUpcoming();
   }, []);
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies]);
 
-  useEffect(() => {
-    console.log(upcoming);
-  }, [upcoming]);
+  // useEffect(() => {
+  //   console.log(upcoming);
+  // }, [upcoming]);
 
   return (
     <div>
-      {loding ? (
-        <h1>Loding...</h1>
+      {popularityLod || upComingLod ? (
+        <h1 className={style.loding}>
+          <div className={style.lodingIcon}>
+            <i class="fa-solid fa-spinner fa-2xl"></i>
+          </div>
+        </h1>
       ) : (
         <div>
           <h1 className={style.subtitle}>인기 콘텐츠</h1>
-          <div className={style.movies}>
-            {movies.map((movie) => (
+          <Xscroll
+            content={movies.map((movie) => (
               <MediaItem
                 key={movie.id}
                 id={movie.id}
                 coverImg={movie.poster_path}
                 title={movie.title}
                 popularity={movie.popularity}
+                content={'movie'}
               />
             ))}
-          </div>
+          />
+
           <h1 className={style.subtitle}>개봉 예정작</h1>
-          <div className={style.movies}>
-            {upcoming.map((upcoming) => (
+          <Xscroll
+            content={upcoming.map((upcoming) => (
               <MediaItem
                 key={upcoming.id}
                 id={upcoming.id}
                 coverImg={upcoming.poster_path}
                 title={upcoming.title}
                 popularity={upcoming.popularity}
+                content={'movie'}
               />
             ))}
-          </div>
+          />
         </div>
       )}
     </div>

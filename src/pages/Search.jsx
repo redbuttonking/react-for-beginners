@@ -14,9 +14,9 @@ function Search() {
     setSubmittedTitle(title);
   };
 
-  useEffect(() => {
-    console.log(title);
-  }, [title]);
+  // useEffect(() => {
+  //   console.log(title);
+  // }, [title]);
 
   return (
     <div>

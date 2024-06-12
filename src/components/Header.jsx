@@ -1,5 +1,5 @@
 import style from '../styles/Header.module.css';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   return (
@@ -23,9 +23,9 @@ function Header() {
 
       <div className={style.search}>
         <span className={style.navItem}>
-          <NavLink to={'/search'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
+          <Link to={'/search'} className={style.navLink}>
             <i className="fa-solid fa-magnifying-glass"></i>
-          </NavLink>
+          </Link>
         </span>
       </div>
     </header>

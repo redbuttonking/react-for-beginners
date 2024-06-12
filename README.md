@@ -713,7 +713,7 @@ const getMovies = async () => {
 };
 ```
 
-- 마찬가지로 Detail.jsx 도 바꾸어줌
+- 마찬가지로 `Detail.jsx` 도 바꾸어줌
 
 ```js
 //Detail.jsx
@@ -750,7 +750,7 @@ const getMovies = async () => {
 
 ## day 11 - 24.06.04 - 영화 정보 사이트 만들기 5
 
-> Search.jsx / SearchInfo.jsx 생성
+> `Search.jsx` / `SearchInfo.jsx` 생성
 
 - 영화 검색 기능을 넣음
 - Search.jsx는 page 이고 SearchInfo.jsx는 검색기능이 있는 component
@@ -764,7 +764,7 @@ const getMovies = async () => {
 
 ## day 12 - 24.06.05 - 영화 정보 사이트 만들기 6
 
-> Movie.jsx 디자인 추가
+> `Movie.jsx` 디자인 추가
 
 - 영화 포스터를 나열하고 같은 위치에 영화 이름과 평점을 띄움
 - 다음과 같은 구조로 만듦
@@ -800,7 +800,7 @@ const getMovies = async () => {
 }
 ```
 
-> Detail.jsx 디자인 적용
+> `Detail.jsx` 디자인 적용
 
 - 해당 영화에 들어가면 뒷배경이 `backdrop_path`인 데이터임 \_ 흐린 배경
 - 정보들과 배경들이 각각 position 맞춰 정렬되어 있음
@@ -833,6 +833,165 @@ const getMovies = async () => {
 </div>
 ```
 
-> TV 컴포넌트 생성 \_ TvSeries.jsx
+> TV 컴포넌트 생성 \_ `TvSeries.jsx`
+
+- TV 시리즈를 보여주는 페이지를 하나 만듦
+
+## day 15 - 24.06.10 - 영화 정보 사이트 만들기 9
+
+> 로딩 화면 생성
+
+- css를 통해 로딩 화면 (중앙 아이콘 회전)을 만듦
+- @keyframes와 animation을 활용해서 구현함
+- jsx에서는 받는 데이터(API)가 여러가지 이기 때문에 각각의 데이터 마다 Loding state를 만들어서 모든 데이터를 받았다면 state값을 false로 바꾼다
+
+```css
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loding {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+.lodingIcon {
+  animation: spin 1.5s linear infinite;
+}
+```
+
+> 가로 스크롤을 구현 1 : component 생성 \_ `Xscroll.jsx`
+
+- conctent (영화, TV시리즈)를 props로 받아서 가로 스크롤 형태로 볼 수 있게함  
+  _즉, Xscroll이 MediaItem을 감싼 상태_
+
+```jsx
+//Movies.jsx
+
+import MediaItem from '../components/MediaItem';
+import Xscroll from '../components/Xscroll';
+
+<Xscroll
+  content={movies.map((movie) => (
+    <MediaItem
+      key="{movie.id}"
+      id="{movie.id}"
+      coverImg="{movie.poster_path}"
+      title="{movie.title}"
+      popularity="{movie.popularity}"
+    />
+  ))}
+/>;
+```
+
+> 가로 스크롤을 구현 2 : useRef \_React 훅
+
+- `useRef`는 React에서 제공하는 훅 중 하나로 주로  
+  1 . dom 요소에 직접 접근하거나  
+  2 . 이전 상태 값을 저장하는 데 사용함
+- 주로 포커스 설정, 텍스트 선택, `스크롤 위치 설정` 등에 유용하게 쓰임
+
+  **이번 프로젝트에서는 dom 요소에 접근하기 위해서 사용했음**
+
+> 가로 스크롤을 구현 3 : 기능 구현
+
+- 함수를 사용해서 X(가로)스크롤 기능을 추가 함
+- useRef를 통해서 각 DOM 요소를 접근함
+
+```js
+//Xscroll.jsx
+
+const scrollContainerRef = useRef(null);
+
+const handleWheel = (event) => {
+  if (scrollContainerRef.current) {
+    scrollContainerRef.current.scrollLeft += event.deltaY;
+  }
+};
+
+const scrollLeft = () => {
+  if (scrollContainerRef.current) {
+    scrollContainerRef.current.scrollLeft -= 300;
+  }
+};
+
+const scrollRight = () => {
+  if (scrollContainerRef.current) {
+    scrollContainerRef.current.scrollLeft += 300;
+  }
+};
+```
+
+```HTML
+<!-- HTML 코드 -->
+
+<div className={style.scrollWrapper}>
+  <button className={style.scrollButton} onClick={scrollLeft}>
+    <!-- 왼쪽 버튼 아이콘 -->
+  </button>
+  <div className={style.scrollContainer} ref={scrollContainerRef} onWheel={handleWheel}>
+    <!-- 보여줄 content -->
+  </div>
+  <button className={style.scrollButton} onClick={scrollRight}>
+    <!-- 오른쪽 버튼 아이콘 -->
+  </button>
+</div>;
+```
+
+- content(위에서 `<div className="style.scrollContainer">` 안에 값)를 스크롤 하기 위해 그것의 부모 div가 ref값을 전달함
+- onWhell 요소를 사용해서 컨트롤 했음
+- 이후 CSS로 꾸며줌
+
+```CSS
+.scrollWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 30px;
+}
+
+.scrollContainer {
+  display: flex;
+
+  /* 가로로 content가 넘어가면 스크롤 형식으로 안넘어가게 해줌 */
+  overflow-x: scroll;
+
+  /* 스크롤이 부드럽게 넘어감 */
+  scroll-behavior: smooth;
+
+  width: 90vw;
+  padding: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollButton {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+```
+
+> TV Series 구현
+
+- 기존에 있는 movie 정보에 대해 구현한것을 바탕으로 component를 만들어 movie와 같은 구조로 TV Series를 구현함
+
+## day 16 - 24.06.12 - 영화 정보 사이트 만들기 10
+
+> 검색 page 디자인 변경 및 TV 프로그램 검색 기능 구현
+
+- 영화 검색과 마찬가지로 api를 사용해 TV 프로그램도 같이 검색 가능하게 구현
 
 # 3. 프로젝트를 마치며...

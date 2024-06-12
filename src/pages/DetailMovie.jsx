@@ -5,7 +5,7 @@ import style from '../styles/Detail.module.css';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 const VIDEO_URL = 'https://www.youtube.com/embed/';
 
-function Detail() {
+function DetailMovie() {
   const { id } = useParams();
 
   const [movieLoding, setMovieLoding] = useState(true);
@@ -52,15 +52,14 @@ function Detail() {
     getVideo();
   }, []);
 
-  useEffect(() => {
-    console.log(movie);
-    console.log(video);
-  }, [movie, video]);
-
   return (
     <div>
       {movieLoding || videoLoding ? (
-        <h1 className={style.loding}>detail loding</h1>
+        <h1 className={style.loding}>
+          <div className={style.lodingIcon}>
+            <i class="fa-solid fa-spinner fa-2xl"></i>
+          </div>
+        </h1>
       ) : (
         <div className={style.container}>
           <img className={style.backdropImg} alt="movie_cover_img" src={IMG_URL + movie.backdrop_path} />
@@ -78,6 +77,7 @@ function Detail() {
                     <span>{genre.name}</span>
                   ))}
                 </div>
+
                 <div className={style.overview}>{movie.overview}</div>
                 <div className={style.video}>
                   {video.length === 0 ? null : (
@@ -99,4 +99,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default DetailMovie;

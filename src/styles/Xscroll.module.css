@@ -1,0 +1,27 @@
+.scrollWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 30px;
+}
+
+.scrollContainer {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  width: 90vw;
+  padding: 10px;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollButton {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  /* z-index: 1; */
+}

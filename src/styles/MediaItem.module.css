@@ -1,5 +1,6 @@
 .movie {
   margin-top: 20px;
+  margin-right: 10px;
 }
 .overlay {
   position: relative;
@@ -33,7 +34,7 @@
 
 .movie img {
   width: 200px;
-  height: auto;
+  height: 300px;
 }
 
 .movieTitle {
