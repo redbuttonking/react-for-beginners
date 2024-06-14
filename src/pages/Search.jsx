@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SearchInfo from '../components/SearchInfo';
 import style from '../styles/Search.module.css';
 
@@ -13,10 +13,6 @@ function Search() {
     event.preventDefault();
     setSubmittedTitle(title);
   };
-
-  // useEffect(() => {
-  //   console.log(title);
-  // }, [title]);
 
   return (
     <div>

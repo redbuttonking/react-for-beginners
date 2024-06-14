@@ -994,4 +994,13 @@ const scrollRight = () => {
 
 - 영화 검색과 마찬가지로 api를 사용해 TV 프로그램도 같이 검색 가능하게 구현
 
+## day 17 - 24.06.14 - 영화 정보 사이트 만들기 11 \_ 마무리
+
+> Header(영화,TV) CSS 추가
+
+- 선택한 페이지에 맞춰 text와 하단 bar가 강조됨  
+  (애니메이션 추가\_ `transition: border-bottom 0.5s ease-in-out 0s;`)
+
+- 필요없는 주석 제거 및 오류 수정
+
 # 3. 프로젝트를 마치며...

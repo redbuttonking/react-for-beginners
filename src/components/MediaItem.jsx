@@ -35,7 +35,8 @@ MediaItem.propTypes = {
   id: PropTypes.number.isRequired,
   coverImg: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  popularity: PropTypes.string.isRequired,
+  popularity: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default MediaItem;

@@ -3,15 +3,13 @@ import { useParams } from 'react-router-dom';
 import style from '../styles/Detail.module.css';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
-const VIDEO_URL = 'https://www.youtube.com/embed/';
 
 function DetaliTvSeries() {
   const { id } = useParams();
 
   const [tvLoding, setTvLoding] = useState(true);
-  const [videoLoding, setVideoLoding] = useState(true);
   const [tv, setTv] = useState([]);
-  const [video, setVideo] = useState([]);
+
   const options = {
     method: 'GET',
     headers: {
@@ -40,7 +38,7 @@ function DetaliTvSeries() {
           </div>
         </h1>
       ) : (
-        <div className={style.container}>
+        <div key={id} className={style.container}>
           <img className={style.backdropImg} alt="movie_cover_img" src={IMG_URL + tv.backdrop_path} />
 
           <div className={style.bdImgOverlay}>
@@ -57,17 +55,6 @@ function DetaliTvSeries() {
                   ))}
                 </div>
                 <div className={style.overview}>{tv.overview}</div>
-                <div className={style.video}>
-                  {video.length === 0 ? null : (
-                    <iframe
-                      className={style.video}
-                      src={VIDEO_URL + video[0].key}
-                      title="YouTube video player"
-                      frameborder="0"
-                      allowfullscreen
-                    ></iframe>
-                  )}
-                </div>
               </div>
             </div>
           </div>

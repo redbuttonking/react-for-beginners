@@ -52,14 +52,6 @@ function Movies() {
     getUpcoming();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(movies);
-  // }, [movies]);
-
-  // useEffect(() => {
-  //   console.log(upcoming);
-  // }, [upcoming]);
-
   return (
     <div>
       {popularityLod || upComingLod ? (

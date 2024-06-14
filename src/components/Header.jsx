@@ -5,20 +5,20 @@ function Header() {
   return (
     <header className={style.topBar}>
       <div className={style.nav}>
-        <span className={style.navItem}>
-          <span className={style.textIcon}>NETFELX</span>
+        <div className={style.textIcon}>NETFELX</div>
+        <div className={style.navItem}>
           <NavLink
             to={'/react-for-beginners'}
             className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}
           >
             영화
           </NavLink>
-        </span>
-        <span className={style.navItem}>
+        </div>
+        <div className={style.navItem}>
           <NavLink to={'/TVseries'} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>
             TV
           </NavLink>
-        </span>
+        </div>
       </div>
 
       <div className={style.search}>
