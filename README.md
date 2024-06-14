@@ -4,7 +4,7 @@
 
 <!-- <img src="img/ToDoList-img.jpg" width="800"> -->
 
-### 👉 [link]() _다 만들면 링크 넣어야함_
+### 👉 [link](https://redbuttonking.github.io/react-for-beginners/)
 
 # 1. 프로젝트 기능 설명
 
